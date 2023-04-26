@@ -28,6 +28,9 @@ let data = [
 
   //Functions 
   function search(string) {
+    if (!string) {
+        return []
+        }
     let results = data.filter(
       (n) =>
         n.url.toLowerCase().includes(string.toLowerCase()) ||
@@ -47,7 +50,7 @@ app.get('/', (req, res) => {
 
 app.get('/results', (req, res) => {
 let searchResults = search(req.query.search)
- 
+res.send(searchResults)
 
 }) 
 
