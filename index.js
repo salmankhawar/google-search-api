@@ -17,7 +17,8 @@ app.get('/results', async (req, res) => {
   if (!req.query.search)  { 
     res.send([]) 
   } else {
-    let searchResults = await Results.find( {$or: [{title: { $regex: req.query.search , $options: 'i'}}, {description: { $regex: req.query.search , $options: 'i'}}, {url: { $regex: req.query.search , $options: 'i'}}]}).toArray()
+    
+    let searchResults = await Results.find( {$text: {$search: req.query.search }}).toArray()
     res.send(searchResults) 
   }
 })
