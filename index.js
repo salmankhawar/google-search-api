@@ -3,14 +3,12 @@ const cors = require('cors')
 const { MongoClient} = require('mongodb')
 require('dotenv').config()
 const client = new MongoClient(
-  process.env.MONGODB_URL
-)
+process.env.MONGODB_URL)
 const db = client.db('google-search')
 const Results = db.collection('Results')
 const app = express()
-
-
 app.use(cors())
+
 
 
 app.get('/results', async (req, res) => {
